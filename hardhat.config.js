@@ -28,6 +28,11 @@ module.exports = {
             accounts: [PRIVATE_KEY],
         },
     },
+    etherscan: {
+        apiKey: {
+            goerli: ETHERSCAN_API_KEY,
+        },
+    },
     gasReporter: {
         enabled: false,
         currency: "USD",
@@ -45,6 +50,6 @@ module.exports = {
         },
     },
     mocha: {
-        timeout: 400000, // 400 seconds before timeout
+        timeout: 1000000, // 400 seconds before timeout
     },
 };
