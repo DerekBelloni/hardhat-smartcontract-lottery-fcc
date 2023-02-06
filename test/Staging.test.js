@@ -26,9 +26,11 @@ developmentChains.includes(network.name)
               it("Works with live Chainlink Keepers and Chainlink VRF, we get a random winner", async () => {
                   // enter the lottery
                   // @ts-ignore
+                  console.log("Setting up test...");
                   const startingTimeStamp = await lottery.getLatestTimeStamp();
                   const accounts = await ethers.getSigners();
 
+                  console.log("Setting up listeners");
                   await new Promise(async (resolve, reject) => {
                       lottery.once("WinnerPicked", async () => {
                           console.log("WinnerPicked event fired!");
@@ -38,7 +40,7 @@ developmentChains.includes(network.name)
                               const lotteryState = await lottery.getLotteryState();
                               const winnerEndingBalance = await accounts[0].getBalance();
                               const endingTimeStamp = await lottery.getLatestTimeStamp();
-                              await expect(lottery.getPlayer(0).to.be.reverted());
+                              await expect(lottery.getPlayer(0).to.be.reverted);
                               assert.equal(recentWinner.toString(), accounts[0].address);
                               assert.equal(lotteryState, 0);
                               assert.equal(
